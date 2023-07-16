@@ -1,6 +1,6 @@
 (function ($) {
 
-  var grid,         // The SlickGrid instance
+  let grid,         // The SlickGrid instance
     cols = [      // The column definitions
       {name: "Header", field: "header", width: 100},
       {name: "Another Header", field: "another-header", width: 100},
@@ -9,10 +9,10 @@
     data = [], // The grid data
     $container = $("#container");
 
-  var $canvas, cellSelector;
+  let $canvas, cellSelector;
 
   // Create data
-  for (var i = 0; i < 10; i++) {
+  for (let i = 0; i < 10; i++) {
     data.push({
       "id": "row" + i,
       "header": "some data",
@@ -22,7 +22,7 @@
   }
 
   function setupGrid() {
-    var $testgrid = $('<div id="grid" />');
+    let $testgrid = $('<div id="grid" />');
     $testgrid.height(600);
 
     $("#container").append($testgrid);
@@ -54,18 +54,18 @@
       startY: $canvas.offset().top + 2
     };
     $canvas.trigger($.Event('draginit'));
-    var startEvent = $.Event('dragstart');
+    let startEvent = $.Event('dragstart');
     startEvent.target = $cell;
     $canvas.trigger(startEvent, dragRangeContainer);
 
-    var dragEvent = $.Event('drag');
+    let dragEvent = $.Event('drag');
     dragEvent.pageX = dragRangeContainer.startX;
     dragEvent.pageY = dragRangeContainer.startY;
     $canvas.trigger(dragEvent, dragRangeContainer);
   }
 
   function dragDown() {
-    var dragEvent = $.Event('drag');
+    let dragEvent = $.Event('drag');
     dragEvent.pageX = dragRangeContainer.startX;
     dragEvent.pageY = dragRangeContainer.startY + 25;
     $canvas.trigger(dragEvent, dragRangeContainer);
@@ -75,15 +75,15 @@
     startDragging(getCell(0, 0));
     dragDown();
 
-    var selectedRange = cellSelector.getCurrentRange();
+    let selectedRange = cellSelector.getCurrentRange();
 
-    var expectedRange = {"start": {"row": 0, "cell": 0}, "end": {"row": 1, "cell": 0}};
+    let expectedRange = {"start": {"row": 0, "cell": 0}, "end": {"row": 1, "cell": 0}};
     deepEqual(selectedRange, expectedRange, "currently mouse-dragged range");
   });
 
   module("plugins - cellrangeselector when no options are passed");
   test("should be created successfully", function () {
-    var $testgrid = $('<div id="grid" />');
+    let $testgrid = $('<div id="grid" />');
     $testgrid.height(600);
 
     $("#container").append($testgrid);
@@ -94,7 +94,7 @@
 
   module("plugins - cellrangeselector when options are passed, but not cellRangeSelector");
   test("should be created successfully", function () {
-    var $testgrid = $('<div id="grid" />');
+    let $testgrid = $('<div id="grid" />');
     $testgrid.height(600);
 
     $("#container").append($testgrid);
