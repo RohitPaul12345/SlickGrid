@@ -1,6 +1,6 @@
 (function($) {
 
-  var grid,         // The SlickGrid instance
+  let grid,         // The SlickGrid instance
       cols = [      // The column definitions
         { name: "Short",  field: "short",   width: 100 },
         { name: "Medium", field: "medium",  width: 100 },
@@ -22,7 +22,7 @@
       }
   
   // Create data
-  for (var i = 0; i < 10; i++) {
+  for (let i = 0; i < 10; i++) {
     data.push({
       "id":             "row" + i,
       "short":          SHORT_VALUE,
@@ -57,7 +57,7 @@
   }
 
   function keyDownOnCell($cell, controlKeyPressed, commandKeyPressed, shiftKeyPressed, keyPressed) {
-    var $event = $.Event('keydown');
+    let $event = $.Event('keydown');
     $event.ctrlKey = controlKeyPressed;
     $event.metaKey = commandKeyPressed;
     $event.shiftKey = shiftKeyPressed;
@@ -73,12 +73,12 @@
   });
 
   test("press right arrow do not change selection", function () {
-    var $cell = getCell(0, 0);
-    var $event = $.Event('keydown');
+    let $cell = getCell(0, 0);
+    let $event = $.Event('keydown');
     $event.which = keys.RIGHT_ARROW;
     $cell.trigger($event);
 
-    var selectedRanges = grid.getSelectionModel().getSelectedRanges();
+    let selectedRanges = grid.getSelectionModel().getSelectedRanges();
     strictEqual(selectedRanges.length, 0, "number of ranges is incorrect");
   });
 
@@ -90,53 +90,53 @@
   });
 
   test("press right arrow do not change selection", function () {
-    var $cell = getCell(1, 3);
+    let $cell = getCell(1, 3);
     $cell.click();
 
     keyDownOnCell($cell, false, false, false, keys.RIGHT_ARROW);
 
-    var selectedRanges = grid.getSelectionModel().getSelectedRanges();
+    let selectedRanges = grid.getSelectionModel().getSelectedRanges();
     strictEqual(selectedRanges.length, 1, "number of ranges is incorrect");
-    var range = selectedRanges[0];
+    let range = selectedRanges[0];
 
     assertColumnRange(range, 1, 4, 1, 4);
   });
 
   test("press shift plus left arrow add second cell to selection", function () {
-    var $cell = getCell(1, 3);
+    let $cell = getCell(1, 3);
 
     $cell.click();
     keyDownOnCell($cell, false, false, true, keys.LEFT_ARROW);
 
-    var selectedRanges = grid.getSelectionModel().getSelectedRanges();
+    let selectedRanges = grid.getSelectionModel().getSelectedRanges();
     strictEqual(selectedRanges.length, 1, "number of ranges is incorrect");
-    var range = selectedRanges[0];
+    let range = selectedRanges[0];
 
     assertColumnRange(range, 1, 2, 1, 3);
   });
 
   test("press control plus shift plus up arrow do not change selection", function () {
-    var $cell = getCell(1, 3);
+    let $cell = getCell(1, 3);
     $cell.click();
     keyDownOnCell($cell, true, false, true, keys.UP_ARROW);
 
-    var selectedRanges = grid.getSelectionModel().getSelectedRanges();
+    let selectedRanges = grid.getSelectionModel().getSelectedRanges();
     strictEqual(selectedRanges.length, 1, "number of ranges");
 
-    var range = selectedRanges[0];
+    let range = selectedRanges[0];
     assertColumnRange(range, 1, 3, 1, 3);
   });
 
 
   test("press command plus shift plus down arrow do not change selection", function () {
-    var $cell = getCell(1, 3);
+    let $cell = getCell(1, 3);
     $cell.click();
     keyDownOnCell($cell, false, true, true, keys.DOWN_ARROW);
 
-    var selectedRanges = grid.getSelectionModel().getSelectedRanges();
+    let selectedRanges = grid.getSelectionModel().getSelectedRanges();
     strictEqual(selectedRanges.length, 1, "number of ranges");
 
-    var range = selectedRanges[0];
+    let range = selectedRanges[0];
     assertColumnRange(range, 1, 3, 1, 3);
   });
 
