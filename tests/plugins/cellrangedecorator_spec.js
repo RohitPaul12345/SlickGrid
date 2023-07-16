@@ -1,6 +1,6 @@
 (function ($) {
 
-  var grid,         // The SlickGrid instance
+  let grid,         // The SlickGrid instance
     cols = [      // The column definitions
       {name: "Header", field: "header", width: 100},
       {name: "Another Header", field: "another-header", width: 100},
@@ -9,10 +9,10 @@
     data = [], // The grid data
     $container = $("#container");
 
-  var $canvas, cellSelector, cellDecorator;
+  let $canvas, cellSelector, cellDecorator;
 
   // Create data
-  for (var i = 0; i < 10; i++) {
+  for (let i = 0; i < 10; i++) {
     data.push({
       "id": "row" + i,
       "header": "some data",
@@ -22,7 +22,7 @@
   }
 
   function setupGridWithValues() {
-    var $testgrid = $('<div id="grid" />');
+    let $testgrid = $('<div id="grid" />');
     $testgrid.height(600);
 
     $("#container").append($testgrid);
@@ -42,7 +42,7 @@
   }
 
   function setupGridWithoutValues() {
-    var $testgrid = $('<div id="grid" />');
+    let $testgrid = $('<div id="grid" />');
     $testgrid.height(600);
 
     $("#container").append($testgrid);
@@ -66,8 +66,8 @@
   });
 
   test("check the values passed on options are used", function () {
-    var element = cellDecorator.show(new Slick.Range(1, 1, 2, 2));
-    var resultCss = element[0].style;
+    let element = cellDecorator.show(new Slick.Range(1, 1, 2, 2));
+    let resultCss = element[0].style;
 
     deepEqual(resultCss.top, "26px", "CSS Property Top");
     deepEqual(resultCss.left, "101px", "CSS Property Left");
@@ -83,8 +83,8 @@
   });
 
   test("check the values passed on options are used", function () {
-    var element = cellDecorator.show(new Slick.Range(1, 1, 2, 2));
-    var resultCss = element[0].style;
+    let element = cellDecorator.show(new Slick.Range(1, 1, 2, 2));
+    let resultCss = element[0].style;
 
     deepEqual(resultCss.top, "24px", "CSS Property Top");
     deepEqual(resultCss.left, "99px", "CSS Property Left");
